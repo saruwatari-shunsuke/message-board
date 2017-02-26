@@ -11,11 +11,15 @@
     <% end %>
 </div>
 
-<%= form_for(@message) do |f| %>
-  名前：
-  <%= f.text_field :name %>
-  
-  内容：
-  <%= f.text_field :body %>
-  <%= f.submit class: "btn btn-sm btn-primary" %>
+<%= form_for(@message) do |fx| %>
+  <div class="form-group">
+      <label for="message_name">名前：</label>
+      <%= fx.text_field :name, class: "form-control", placeholder: "名前を入力してください" %>
+  </div>
+  <div class="form-group">
+      <label for="message_body">内容：</label>
+      <%= fx.text_area :body, class: "form-control", placeholder: "内容を入力してください" %>
+  </div>
+
+  <%= fx.submit class: "btn btn-sm btn-primary" %>
 <% end %>
