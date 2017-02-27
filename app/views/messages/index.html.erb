@@ -12,14 +12,25 @@
 </div>
 
 <%= form_for(@message) do |fx| %>
-  <div class="form-group">
-      <%= label :message, :name, "名前：" %>
-      <%= fx.text_field :name, class: "form-control", placeholder: "名前を入力してください" %>
-  </div>
-  <div class="form-group">
-      <%= label :message, :body, "内容：" %>
-      <%= fx.text_area :body, class: "form-control", placeholder: "内容を入力してください" %>
-  </div>
-
-  <%= fx.submit class: "btn btn-lg btn-primary" %>
+    <% if @message.errors.present? %>
+        <div class="alert alert-danger">
+            <%= alert %>
+            <ul>
+                <% @message.errors.full_messages.each do |full_message| %>
+                    <li>
+                        <%= full_message %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <div class="form-group">
+        <%= label :message, :name, "名前：" %>
+        <%= fx.text_field :name, class: "form-control", placeholder: "名前を入力してください" %>
+    </div>
+    <div class="form-group">
+        <%= label :message, :body, "内容：" %>
+        <%= fx.text_area :body, class: "form-control", placeholder: "内容を入力してください" %>
+    </div>
+    <%= fx.submit class: "btn btn-lg btn-primary" %>
 <% end %>
